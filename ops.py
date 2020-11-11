@@ -339,25 +339,28 @@ class Interpolate(tf.keras.layers.Layer):
 #     _, h, w, _ = x.get_shape().as_list()
 #     new_size = [h * scale_factor, w * scale_factor]
 #     return tf.image.resize(x, size=new_size, method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+
+# def nearest_up_sample(x, scale_factor=2):
+#     ##_, h, w, _ = x.get_shape().as_list()
+#     shape= x.get_shape().as_list()
+#     #new_size = [h * scale_factor, w * scale_factor, d * scale_factor]
+#
+#     rsz1 = tf.image.resize(tf.reshape(x, [shape[0], shape[1], shape[2], shape[3]*shape[4]]),
+#                                   [shape[1]*scale_factor, shape[2]*scale_factor],method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+#     rsz2 = tf.image.resize(
+#         tf.reshape(
+#             tf.transpose(
+#                 tf.reshape(
+#                     rsz1, [shape[0], shape[1]*scale_factor, shape[2]*scale_factor, shape[3], shape[4]]),
+#                      [0, 3, 2, 1, 4]),
+#                     [shape[0], shape[3], shape[2]*scale_factor, shape[1]*scale_factor*shape[4]]),
+#                      [shape[3]*scale_factor, shape[2]*scale_factor],method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+#
+#     return tf.transpose(tf.reshape(rsz2, [shape[0], shape[3]*scale_factor, shape[2]*scale_factor, shape[1]*scale_factor, shape[4]]), [0, 3, 2, 1, 4])
+#     ##return tf.image.resize(x, size=new_size, method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+
 def nearest_up_sample(x, scale_factor=2):
-    ##_, h, w, _ = x.get_shape().as_list()
-    shape= x.get_shape().as_list()
-    #new_size = [h * scale_factor, w * scale_factor, d * scale_factor]
-
-    rsz1 = tf.image.resize(tf.reshape(x, [shape[0], shape[1], shape[2], shape[3]*shape[4]]),
-                                  [shape[1]*scale_factor, shape[2]*scale_factor],method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-    rsz2 = tf.image.resize(
-        tf.reshape(
-            tf.transpose(
-                tf.reshape(
-                    rsz1, [shape[0], shape[1]*scale_factor, shape[2]*scale_factor, shape[3], shape[4]]),
-                     [0, 3, 2, 1, 4]),
-                    [shape[0], shape[3], shape[2]*scale_factor, shape[1]*scale_factor*shape[4]]),
-                     [shape[3]*scale_factor, shape[2]*scale_factor],method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-
-    return tf.transpose(tf.reshape(rsz2, [shape[0], shape[3]*scale_factor, shape[2]*scale_factor, shape[1]*scale_factor, shape[4]]), [0, 3, 2, 1, 4])
-    ##return tf.image.resize(x, size=new_size, method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-
+    return tf.keras.layers.UpSampling3D(size=scale_factor)(x)
 
 def bilinear_up_sample(x, scale_factor=2):
     _, h, w, _ = x.get_shape().as_list()

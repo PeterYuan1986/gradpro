@@ -171,6 +171,11 @@ class StarGAN_v2():
             _ = self.generator_ema([x, s])
             _ = self.discriminator([x, y])
 
+            self.generator.summary()
+            self.mapping_network.summary()
+            self.style_encoder.summary()
+            self.discriminator.summary()
+
 
             """ Optimizer """
             self.g_optimizer = tf.keras.optimizers.Adam(learning_rate=self.lr, beta_1=self.beta1, beta_2=self.beta2, epsilon=1e-08)
@@ -383,6 +388,7 @@ class StarGAN_v2():
 
                 latent_fake_save_path = './{}/latent_{:07d}.jpg'.format(self.sample_dir, idx + 1)
                 ref_fake_save_path = './{}/ref_{:07d}.jpg'.format(self.sample_dir, idx + 1)
+
 
                 self.latent_canvas(x_real, latent_fake_save_path)
                 self.refer_canvas(x_real, x_ref, y_trg, ref_fake_save_path, img_num=5)
@@ -612,5 +618,4 @@ class StarGAN_v2():
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
             save_path = './{}/latent/latent_{}_'.format(self.result_dir, src_name)
-
             self.latent_canvas(src_img, save_path)

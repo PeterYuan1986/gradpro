@@ -243,7 +243,7 @@ class Generator(tf.keras.Model):
         self.sn = sn
 
         self.channels = 2 ** 14 // img_size  # if 256 -> 64
-        self.repeat_num = 2 #int(np.log2(img_size)) - 4  # if 256 -> 4
+        self.repeat_num = int(np.log2(img_size)) - 4  # if 256 -> 4
 
         ##self.from_rgb = Conv(channels=self.channels, kernel=3, stride=1, pad=1, sn=self.sn, name='from_rgb')
         self.from_rgb = Conv3D(channels=self.channels, kernel=3, stride=1, pad=1, sn=self.sn, name='from_rgb')
@@ -377,7 +377,7 @@ class StyleEncoder(tf.keras.Model):
         self.sn = sn
 
         self.channels = 2 ** 14 // img_size  # if 256 -> 64
-        self.repeat_num = 2 #int(np.log2(img_size)) - 2  # if 256 -> 6
+        self.repeat_num = int(np.log2(img_size)) - 2  # if 256 -> 6
 
         self.shared_layers, self.unshared_layers = self.architecture_init()
 
@@ -440,7 +440,7 @@ class Discriminator(tf.keras.Model):
         self.sn = sn
 
         self.channels = 2 ** 14 // img_size  # if 256 -> 64
-        self.repeat_num = 2 #int(np.log2(img_size)) - 2  # if 256 -> 6
+        self.repeat_num = int(np.log2(img_size)) - 2  # if 256 -> 6
 
         self.encoder = self.architecture_init()
 
