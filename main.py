@@ -23,9 +23,9 @@ def parse_args():
     parser.add_argument('--iteration', type=int, default=2000, help='The number of training iterations')
     parser.add_argument('--ds_iter', type=int, default=2000, help='Number of iterations to optimize diversity sensitive loss')
 
-    parser.add_argument('--batch_size', type=int, default=3, help='The size of batch size')  # each gpu
+    parser.add_argument('--batch_size', type=int, default=1, help='The size of batch size')  # each gpu
     parser.add_argument('--print_freq', type=int, default=1000, help='The number of image_print_freq')
-    parser.add_argument('--save_freq', type=int, default=10000, help='The number of ckpt_save_freq')
+    parser.add_argument('--save_freq', type=int, default=500, help='The number of ckpt_save_freq')
     parser.add_argument('--num_style', type=int, default=5, help='Number of generated images per domain during sampling')
 
     parser.add_argument('--lr', type=float, default=1e-4, help='The learning rate')
@@ -47,7 +47,7 @@ def parse_args():
     parser.add_argument('--latent_dim', type=int, default=16, help='Latent vector dimension')
     parser.add_argument('--style_dim', type=int, default=64, help='Style code dimension')
 
-    parser.add_argument('--img_size', type=int, default=128, help='The size of image')
+    parser.add_argument('--img_size', type=int, default=40, help='The size of image')
     parser.add_argument('--img_ch', type=int, default=1, help='The size of image channel')
     parser.add_argument('--augment_flag', type=str2bool, default=False, help='Image augmentation use or not')
 
