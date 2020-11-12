@@ -20,8 +20,8 @@ def parse_args():
     # parser.add_argument('--merge', type=str2bool, default=True, help='In test phase, merge reference-guided image result or not')
     # parser.add_argument('--merge_size', type=int, default=0, help='merge size matching number')    it is useless when you test 3d image    peter
     parser.add_argument('--dataset', type=str, default='mri', help='dataset_name')
-    parser.add_argument('--iteration', type=int, default=100, help='The number of training iterations')
-    parser.add_argument('--ds_iter', type=int, default=100, help='Number of iterations to optimize diversity sensitive loss')
+    parser.add_argument('--iteration', type=int, default=2000, help='The number of training iterations')
+    parser.add_argument('--ds_iter', type=int, default=2000, help='Number of iterations to optimize diversity sensitive loss')
 
     parser.add_argument('--batch_size', type=int, default=3, help='The size of batch size')  # each gpu
     parser.add_argument('--print_freq', type=int, default=1000, help='The number of image_print_freq')
@@ -47,7 +47,7 @@ def parse_args():
     parser.add_argument('--latent_dim', type=int, default=16, help='Latent vector dimension')
     parser.add_argument('--style_dim', type=int, default=64, help='Style code dimension')
 
-    parser.add_argument('--img_size', type=int, default=60, help='The size of image')
+    parser.add_argument('--img_size', type=int, default=128, help='The size of image')
     parser.add_argument('--img_ch', type=int, default=1, help='The size of image channel')
     parser.add_argument('--augment_flag', type=str2bool, default=False, help='Image augmentation use or not')
 
