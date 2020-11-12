@@ -228,8 +228,8 @@ class AdaIN(tf.keras.layers.Layer):
         gamma = self.gamma_fc(style)
         beta = self.beta_fc(style)
 
-        gamma = tf.reshape(gamma, shape=[-1, 1, 1, self.channels])
-        beta = tf.reshape(beta, shape=[-1, 1, 1, self.channels])
+        gamma = tf.reshape(gamma, shape=[-1, 1,1,1, self.channels])  #peter
+        beta = tf.reshape(beta, shape=[-1, 1, 1,1, self.channels])   #peter
 
         x = (1 + gamma) * x_norm + beta
 
