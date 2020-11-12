@@ -384,15 +384,16 @@ class StarGAN_v2():
 
             # save every self.print_freq
             if np.mod(idx + 1, self.print_freq) == 0:
-
-
-                latent_fake_save_path = './{}/latent_{:07d}.jpg'.format(self.sample_dir, idx + 1)
-                ref_fake_save_path = './{}/ref_{:07d}.jpg'.format(self.sample_dir, idx + 1)
-
-
+                dir_path = './{}/latent/'.format(self.sample_dir)
+                if not os.path.exists(dir_path):
+                    os.makedirs(dir_path)
+                dir_path = './{}/ref/'.format(self.sample_dir)
+                if not os.path.exists(dir_path):
+                    os.makedirs(dir_path)
+                latent_fake_save_path = './{}/latent/latent_{:07d}_'.format(self.sample_dir, idx + 1)
+                ref_fake_save_path = './{}/ref/ref_{:07d}'.format(self.sample_dir, idx + 1)
                 self.latent_canvas(x_real, latent_fake_save_path)
                 self.refer_canvas(x_real, x_ref, y_trg, ref_fake_save_path, img_num=5)
-
             print("iter: [%6d/%6d] time: %4.4f d_loss: %.8f, g_loss: %.8f" % (
             idx, self.iteration, time.time() - iter_start_time, d_loss_latent+d_loss_ref, g_loss_latent+g_loss_ref))
 
