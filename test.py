@@ -19,7 +19,7 @@ def showNii(img):
         plt.imshow(img[i, :, :], cmap='gray')
         plt.show()
 #
-xx='../samples/StarGAN_v2_mri_gan-gp$ git add latent_0001000.jpgfemale.nii'
+xx='./samples/StarGAN_v2_mri_gan-gp/latent/latent_0002000_female.nii'
 showNii(xx)
 # itk_img = resize(itk_img, 80,80,80)  ###peter
 # x = sitk.GetArrayFromImage(itk_img)
