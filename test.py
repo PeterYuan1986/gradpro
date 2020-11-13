@@ -3,7 +3,15 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from utils import *
-#
+import argparse
+
+def parse_args():
+    desc = "Tensorflow implementation of StarGAN_v2"
+    parser = argparse.ArgumentParser(description=desc)
+    parser.add_argument('--result_dir', type=str, default='results',
+                        help='Directory name to save the sample or test images')
+    return parser.parse_args()
+
 def image_to_tf(filename):
     itk_img = sitk.ReadImage(filename)
     itk_img = resize(itk_img, 80,80,80,1)  ###peter
@@ -15,12 +23,10 @@ def image_to_tf(filename):
 def showNii(img):
     itk_img = sitk.ReadImage(img)
     img = sitk.GetArrayFromImage(itk_img)
-    for i in range(img.shape[0]):
+    for i in range(0,img.shape[0],10):
         plt.imshow(img[i, :, :], cmap='gray')
         plt.show()
-#
-xx='./samples/StarGAN_v2_mri_gan-gp/latent/latent_0002000_female.nii'
-showNii(xx)
+
 # itk_img = resize(itk_img, 80,80,80)  ###peter
 # x = sitk.GetArrayFromImage(itk_img)
 # # y = np.expand_dims(x, axis=3)
@@ -40,3 +46,13 @@ showNii(xx)
 #
 # xx='co20130204_101449T1mprages003a1001.nii'
 # image_to_tf(xx)
+"""main"""
+def main():
+    args = parse_args()
+    img=args.result_dir
+    print (img)
+    img='ref_0002000.nii'
+    showNii(img)
+
+if __name__ == '__main__':
+    main()

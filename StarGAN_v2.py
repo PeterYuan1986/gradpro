@@ -391,7 +391,7 @@ class StarGAN_v2():
                 if not os.path.exists(dir_path):
                     os.makedirs(dir_path)
                 latent_fake_save_path = './{}/latent/latent_{:07d}_'.format(self.sample_dir, idx + 1)
-                ref_fake_save_path = './{}/ref/ref_{:07d}'.format(self.sample_dir, idx + 1)
+                ref_fake_save_path = './{}/ref/ref_{:07d}_'.format(self.sample_dir, idx + 1)
                 self.latent_canvas(x_real, latent_fake_save_path)
                 self.refer_canvas(x_real, x_ref, y_trg, ref_fake_save_path, img_num=5)
             print("iter: [%6d/%6d] time: %4.4f d_loss: %.8f, g_loss: %.8f" % (
