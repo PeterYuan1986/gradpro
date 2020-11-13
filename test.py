@@ -13,6 +13,8 @@ def image_to_tf(filename):
 #
 
 def showNii(img):
+    itk_img = sitk.ReadImage(img)
+    img = sitk.GetArrayFromImage(itk_img)
     for i in range(img.shape[0]):
         plt.imshow(img[i, :, :], cmap='gray')
         plt.show()
