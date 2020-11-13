@@ -4,6 +4,9 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from utils import *
 import argparse
+import matplotlib
+
+matplotlib.use('Agg')
 
 def parse_args():
     desc = "Tensorflow implementation of StarGAN_v2"
